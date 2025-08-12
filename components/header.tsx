@@ -20,7 +20,7 @@ export function Header() {
           aria-label="Ir al inicio"
         >
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Municipalidad de Pachacámac"
             width={48}
             height={48}
