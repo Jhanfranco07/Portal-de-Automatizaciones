@@ -51,12 +51,19 @@ export default function HomePage() {
           <FilterChips value={cat} onChange={setCat} />
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((app: AppLink) => (<AppCard key={app.id} app={app} />))}
-          {filtered.length === 0 && (
-            <p className="text-sm text-gray-600 dark:text-gray-300">Sin resultados. Ajusta tu búsqueda o filtros.</p>
-          )}
-        </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {filtered.map((app: AppLink) => (
+          <div key={app.id} className="fade-in">
+            <AppCard app={app} />
+          </div>
+        ))}
+        {filtered.length === 0 && (
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            Sin resultados. Ajusta tu búsqueda o filtros.
+          </p>
+        )}
+      </div>
+
       </section>
 
       <section id="faq" className="mt-16 space-y-4">
