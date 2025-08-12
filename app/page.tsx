@@ -74,7 +74,7 @@ export default function HomePage() {
         <details className="rounded-xl border p-4">
           <summary className="cursor-pointer font-medium">¿Qué hago si no carga?</summary>
           <p className="mt-2 text-sm">
-            Recarga la página, espera <strong>30–60 s</strong> y verifica tu conexión.
+            Recarga la página, espera <strong>5–15 segundos</strong> y verifica tu conexión.
           </p>
         </details>
 
