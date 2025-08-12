@@ -13,8 +13,8 @@ const BANNER = (
     className="rounded-2xl border bg-yellow-50 p-4 text-sm text-yellow-900 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-800"
   >
     <strong>Importante:</strong> Estas aplicaciones están alojadas en <em>Streamlit Community</em> (plan gratuito).
-    Cuando no hay actividad, entran en reposo. Si al ingresar ves un botón azul de
-    <strong> “Run”/“Rerun”</strong> o <strong>“Yes, get this app back up!”</strong>, haz clic para encenderla y espera unos segundos.
+    Cuando no hay actividad, entran en reposo. Si ves un botón azul de
+    <strong> “Run”/“Rerun”</strong> o <strong>“Yes, get this app back up!”</strong>, haz clic y espera unos segundos.
   </div>
 )
 
@@ -34,12 +34,16 @@ export default function HomePage() {
   return (
     <div className="py-10">
       <section className="mx-auto max-w-4xl text-center">
-        <h1 className="mb-3 text-4xl font-extrabold tracking-tight md:text-5xl">Portal de Automatizaciones</h1>
+        <h1 className="mb-3 text-4xl font-extrabold tracking-tight md:text-5xl">
+          Portal de Automatizaciones
+        </h1>
         <p className="text-lg text-gray-600 dark:text-gray-300">
           Landing institucional para centralizar y acceder a las aplicaciones Streamlit de la Municipalidad de Pachacámac.
         </p>
         <div className="mt-6 flex justify-center">
-          <a href="#apps" className="rounded-2xl bg-brand px-5 py-3 font-semibold text-white hover:bg-brand-dark">Ver aplicaciones</a>
+          <a href="#apps" className="rounded-2xl bg-brand px-5 py-3 font-semibold text-white hover:bg-brand-dark">
+            Ver aplicaciones
+          </a>
         </div>
       </section>
 
@@ -51,19 +55,18 @@ export default function HomePage() {
           <FilterChips value={cat} onChange={setCat} />
         </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((app: AppLink) => (
-          <div key={app.id} className="fade-in">
-            <AppCard app={app} />
-          </div>
-        ))}
-        {filtered.length === 0 && (
-          <p className="text-sm text-gray-600 dark:text-gray-300">
-            Sin resultados. Ajusta tu búsqueda o filtros.
-          </p>
-        )}
-      </div>
-
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((app: AppLink) => (
+            <div key={app.id} className="fade-in">
+              <AppCard app={app} />
+            </div>
+          ))}
+          {filtered.length === 0 && (
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              Sin resultados. Ajusta tu búsqueda o filtros.
+            </p>
+          )}
+        </div>
       </section>
 
       <section id="faq" className="mt-16 space-y-4">
@@ -72,16 +75,14 @@ export default function HomePage() {
         <details className="rounded-xl border p-4">
           <summary className="cursor-pointer font-medium">¿Por qué veo un botón azul en Streamlit?</summary>
           <p className="mt-2 text-sm">
-            Streamlit Community (plan gratuito) pone las apps en reposo. Verás un botón azul
-            “<strong>Run</strong>/<strong>Rerun</strong>” o “<strong>Yes, get this app back up!</strong>”.
-            Haz clic para encenderla.
+            Streamlit Community (plan gratuito) pone las apps en reposo. Haz clic en “Run”/“Rerun” para encenderla.
           </p>
         </details>
 
         <details className="rounded-xl border p-4">
           <summary className="cursor-pointer font-medium">¿Qué hago si no carga?</summary>
           <p className="mt-2 text-sm">
-            Recarga la página, espera <strong>5–15 segundos</strong> y verifica tu conexión.
+            Recarga la página, espera 5–15 s y verifica tu conexión.
           </p>
         </details>
 
