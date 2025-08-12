@@ -49,14 +49,15 @@ export function Header() {
         {/* Menú normal en desktop */}
         <nav
           className={`${
-            open ? "block" : "hidden"
-          } w-full sm:w-auto sm:flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2 sm:mt-0 bg-brand sm:bg-transparent p-4 sm:p-0 rounded-lg sm:rounded-none transition-all duration-300`}
+            open ? "flex" : "hidden"
+          } flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto mt-2 sm:mt-0 bg-brand sm:bg-transparent p-4 sm:p-0 rounded-lg sm:rounded-none transition-all duration-300`}
           aria-label="Principal"
         >
           <Link className="text-sm hover:underline" href="/#apps" onClick={() => setOpen(false)}>Aplicaciones</Link>
           <Link className="text-sm hover:underline" href="/#faq" onClick={() => setOpen(false)}>FAQ</Link>
           <Link className="text-sm hover:underline" href="/contacto" onClick={() => setOpen(false)}>Contacto</Link>
         </nav>
+
       </div>
     </header>
   )
