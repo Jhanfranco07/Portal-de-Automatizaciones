@@ -22,10 +22,10 @@ export function Header() {
           <Image
             src="/logo.png"
             alt="Municipalidad de Pachacámac"
-            width={48}
-            height={48}
+            width={64}
+            height={64}
             priority
-            className="object-contain sm:w-16 sm:h-16"
+            unoptimized
           />
           <div className="flex flex-col leading-tight">
             <span className="text-xs sm:text-sm text-gray-200 group-hover:text-white">
