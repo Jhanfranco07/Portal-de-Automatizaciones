@@ -2,7 +2,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { Menu, X } from "lucide-react" 
+import { Menu, X } from "lucide-react"
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -31,13 +31,9 @@ export function Header() {
             <span className="text-xs sm:text-sm text-gray-200 group-hover:text-white">
               Municipalidad de Pachacámac
             </span>
-            <span className="font-bold text-base sm:text-lg text-white">
-              Portal de Automatizaciones
-            </span>
           </div>
         </Link>
 
-        {/* Botón hamburguesa en mobile */}
         <button
           className="sm:hidden p-2 rounded-md hover:bg-brand-dark transition"
           onClick={() => setOpen(!open)}
@@ -46,7 +42,7 @@ export function Header() {
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Menú normal en desktop */}
+
         <nav
           className={`${
             open ? "flex" : "hidden"
@@ -57,7 +53,6 @@ export function Header() {
           <Link className="text-sm hover:underline" href="/#faq" onClick={() => setOpen(false)}>FAQ</Link>
           <Link className="text-sm hover:underline" href="/contacto" onClick={() => setOpen(false)}>Contacto</Link>
         </nav>
-
       </div>
     </header>
   )
