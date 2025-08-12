@@ -99,7 +99,7 @@ export default function HomePage() {
         <details className="rounded-xl border p-4 fade-in">
           <summary className="cursor-pointer font-medium">¿A quién contacto?</summary>
           <p className="mt-2 text-sm">
-            Escríbenos a <a className="underline" href="mailto:soporte@pachacamac.gob.pe">soporte@pachacamac.gob.pe</a>.
+            Escríbe al número <a className="underline" href="https://wa.me/qr/JZUPLUTJVE3HL1">921561684</a>.
           </p>
         </details>
       </section>
