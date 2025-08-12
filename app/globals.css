@@ -5,3 +5,8 @@
 :root { color-scheme: light dark; }
 html:focus-within { scroll-behavior: smooth; }
 :focus-visible { outline: 2px solid #d62828; outline-offset: 2px; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn .35s ease-out both; }
