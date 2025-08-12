@@ -4,6 +4,16 @@ import { Badge } from "@/components/ui/badge"
 
 type State = "active" | "sleep" | "down" | null
 
+async function clientPing(url: string): Promise<boolean> {
+  try {
+    // Si hay conectividad básica, esto suele resolver (respuesta opaca)
+    await fetch(url, { mode: "no-cors", method: "GET" })
+    return true
+  } catch {
+    return false
+  }
+}
+
 export function StatusHint({ url }: { url: string }) {
   const [state, setState] = React.useState<State>(null)
 
@@ -15,23 +25,30 @@ export function StatusHint({ url }: { url: string }) {
         body: JSON.stringify({ url }),
       })
       const data = await res.json()
-      setState((data?.state ?? "down") as State)
+      let s = (data?.state ?? "down") as State
+
+      // Fallback: si la API dice down, probamos un ping desde el cliente.
+      if (s === "down") {
+        const reachable = await clientPing(url)
+        if (reachable) s = "sleep" // preferimos avisar “posible reposo” en vez de inactivo
+      }
+
+      setState(s)
     } catch {
-      setState("down")
+      // último recurso: ping cliente
+      const reachable = await clientPing(url)
+      setState(reachable ? "sleep" : "down")
     }
   }
 
   React.useEffect(() => {
     check()
-    // opcional: re-chequeo cuando el usuario vuelve a la pestaña
     const onFocus = () => check()
     window.addEventListener("focus", onFocus)
     return () => window.removeEventListener("focus", onFocus)
   }, [url])
 
-  if (state === null) {
-    return <Badge className="bg-gray-100 dark:bg-gray-800">comprobando…</Badge>
-  }
+  if (state === null) return <Badge className="bg-gray-100 dark:bg-gray-800">comprobando…</Badge>
   if (state === "active") {
     return (
       <Badge className="bg-green-100 border-green-300 text-green-900 dark:bg-green-900/30 dark:border-green-800 dark:text-green-200">
