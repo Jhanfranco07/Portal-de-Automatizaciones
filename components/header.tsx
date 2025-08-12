@@ -2,7 +2,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { Menu, X } from "lucide-react" // Asegúrate de tener lucide-react instalado
+import { Menu, X } from "lucide-react" 
 
 export function Header() {
   const [open, setOpen] = useState(false)
