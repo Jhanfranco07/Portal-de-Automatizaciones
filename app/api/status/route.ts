@@ -7,23 +7,17 @@ const SLEEP_MARKERS = [
   ">Rerun<",
 ]
 
-async function tryFetch(url: string, init: RequestInit, asText: boolean) {
-  const res = await fetch(url, init)
-  let text = ""
-  if (asText) {
-    try { text = await res.text() } catch { /* ignorar */ }
-  }
-  return { res, text }
-}
-
 export async function POST(req: Request) {
-  const { url } = (await req.json().catch(() => ({}))) as { url?: string }
-  if (!url) return NextResponse.json({ ok: false, state: "down", reason: "missing-url" }, { status: 400 })
+  const body = await req.json().catch(() => ({}))
+  const url = typeof body?.url === "string" ? body.url : undefined
+  if (!url) {
+    return NextResponse.json({ ok: false, state: "down", reason: "missing-url" }, { status: 400 })
+  }
 
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 4000)
 
-  const commonHeaders = {
+  const headers = {
     "user-agent":
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118 Safari/537.36",
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -31,38 +25,38 @@ export async function POST(req: Request) {
   }
 
   try {
-    // 1) HEAD rápido
-    let { res } = await tryFetch(url, { method: "HEAD", headers: commonHeaders, redirect: "follow", signal: controller.signal }, false)
+    // HEAD rápido
+    let res = await fetch(url, { method: "HEAD", headers, redirect: "follow", signal: controller.signal })
 
-    // Algunos hosts bloquean HEAD → caemos a GET
-    if (res.status === 405 || res.status === 403 || res.status === 401) {
-      // tratar como potencialmente accesible, pasamos a GET para inspeccionar
-      // no devolvemos todavía
-    } else if (res.ok) {
+    // Si HEAD es aceptado y ok → activo
+    if (res.ok) {
       clearTimeout(timeout)
       return NextResponse.json({ ok: true, state: "active", status: res.status }, { status: 200 })
     }
 
-    // 2) GET con lectura de HTML
-    const getTry = await tryFetch(url, { method: "GET", headers: commonHeaders, redirect: "follow", signal: controller.signal }, true)
-    res = getTry.res
-    const text = getTry.text
+    // Muchos bloquean HEAD → vamos a GET
+    const getRes = await fetch(url, { method: "GET", headers, redirect: "follow", signal: controller.signal })
+    res = getRes
+    let text = ""
+    try { text = await res.text() } catch { /* puede fallar por streaming o guardas */ }
 
-    const looksSleeping = SLEEP_MARKERS.some((m) => text.includes(m))
+    const looksSleeping = text && SLEEP_MARKERS.some((m) => text.includes(m))
 
-    // Mapeo de estados
+    // Heurística:
+    // - Si vemos marcadores de "sleep" → sleep
     if (looksSleeping) {
       clearTimeout(timeout)
       return NextResponse.json({ ok: true, state: "sleep", status: res.status }, { status: 200 })
     }
 
+    // - 2xx/3xx → activo
     if (res.status >= 200 && res.status < 400) {
       clearTimeout(timeout)
       return NextResponse.json({ ok: true, state: "active", status: res.status }, { status: 200 })
     }
 
-    // Muchos 401/403/405 vienen de protecciones anti-bot, pero el navegador sí carga
-    if (res.status === 401 || res.status === 403 || res.status === 405) {
+    // - 401/403/405 suelen ser guardas anti-bot, pero el navegador carga → considerar activo
+    if ([401, 403, 405].includes(res.status)) {
       clearTimeout(timeout)
       return NextResponse.json({ ok: true, state: "active", status: res.status, hinted: "bot-guard" }, { status: 200 })
     }
@@ -71,9 +65,10 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, state: "down", status: res.status }, { status: 200 })
   } catch (e: any) {
     clearTimeout(timeout)
-    // Los timeouts/aborts suelen ser “app dormida”
     const reason = e?.name || "fetch-error"
     const state = reason === "AbortError" ? "sleep" : "down"
     return NextResponse.json({ ok: false, state, reason }, { status: 200 })
   }
 }
+
+
