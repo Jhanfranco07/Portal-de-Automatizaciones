@@ -13,7 +13,7 @@ export function Header() {
       <div className="h-2 w-full bg-brand-dark"></div>
 
       <div className="container flex flex-wrap items-center justify-between gap-4 py-2">
-        {/* Logo y título */}
+        {/* Logo y nombre institución */}
         <Link
           href="/"
           className="group flex flex-col sm:flex-row sm:items-center gap-2"
@@ -27,13 +27,12 @@ export function Header() {
             priority
             unoptimized
           />
-          <div className="flex flex-col leading-tight">
-            <span className="text-xs sm:text-sm text-gray-200 group-hover:text-white">
-              Municipalidad de Pachacámac
-            </span>
-          </div>
+          <span className="text-xs sm:text-sm text-gray-200 group-hover:text-white">
+            Municipalidad de Pachacámac
+          </span>
         </Link>
 
+        {/* Botón hamburguesa en mobile */}
         <button
           className="sm:hidden p-2 rounded-md hover:bg-brand-dark transition"
           onClick={() => setOpen(!open)}
@@ -42,7 +41,7 @@ export function Header() {
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-
+        {/* Menú */}
         <nav
           className={`${
             open ? "flex" : "hidden"
