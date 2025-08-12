@@ -1,19 +1,16 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
+import { Menu, X } from "lucide-react" // Asegúrate de tener lucide-react instalado
 
 export function Header() {
+  const [open, setOpen] = useState(false)
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-brand text-white">
       {/* Franja roja sólida */}
       <div className="h-2 w-full bg-brand-dark"></div>
-
-      <a
-        href="#contenido"
-        className="sr-only focus:not-sr-only focus:absolute left-2 top-2 z-50 bg-brand text-white px-3 py-1 rounded"
-      >
-        Saltar al contenido
-      </a>
 
       <div className="container flex flex-wrap items-center justify-between gap-4 py-2">
         {/* Logo y título */}
@@ -40,13 +37,28 @@ export function Header() {
           </div>
         </Link>
 
-        {/* Menú de navegación */}
-        <nav className="hidden sm:flex items-center gap-4" aria-label="Principal">
-          <Link className="text-sm hover:underline" href="/#apps">Aplicaciones</Link>
-          <Link className="text-sm hover:underline" href="/#faq">FAQ</Link>
-          <Link className="text-sm hover:underline" href="/contacto">Contacto</Link>
+        {/* Botón hamburguesa en mobile */}
+        <button
+          className="sm:hidden p-2 rounded-md hover:bg-brand-dark transition"
+          onClick={() => setOpen(!open)}
+          aria-label="Abrir menú"
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Menú normal en desktop */}
+        <nav
+          className={`${
+            open ? "block" : "hidden"
+          } w-full sm:w-auto sm:flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2 sm:mt-0 bg-brand sm:bg-transparent p-4 sm:p-0 rounded-lg sm:rounded-none transition-all duration-300`}
+          aria-label="Principal"
+        >
+          <Link className="text-sm hover:underline" href="/#apps" onClick={() => setOpen(false)}>Aplicaciones</Link>
+          <Link className="text-sm hover:underline" href="/#faq" onClick={() => setOpen(false)}>FAQ</Link>
+          <Link className="text-sm hover:underline" href="/contacto" onClick={() => setOpen(false)}>Contacto</Link>
         </nav>
       </div>
     </header>
   )
 }
+
