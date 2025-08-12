@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-brand text-white">
+    <header className="sticky top-0 z-40 w-full border-b bg-brand text-white backdrop-blur-sm/">
       {/* Franja roja sólida */}
       <div className="h-2 w-full bg-brand-dark"></div>
 
