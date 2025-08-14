@@ -23,7 +23,7 @@ export const APPS: AppLink[] = [
     url: "https://informe-conformidad.streamlit.app/",
     tags: ["documentos", "automatización", "GLDE"],
     owner: "GLDE",
-    image: "/apps/informes.png",
+    image: "/informes.png",
     accent: "#7c0e0e",
   },
   {
@@ -35,7 +35,7 @@ export const APPS: AppLink[] = [
     url: "https://appferia.streamlit.app/",
     tags: ["verificación", "pagos", "puestos", "Desarrollo Económico"],
     owner: "Desarrollo Económico",
-    image: "/apps/ferias.png", // <- comilla cerrada y coma final
+    image: "/ferias.png", // <- comilla cerrada y coma final
     accent: "#7c0e0e",
   },
   {
@@ -47,7 +47,7 @@ export const APPS: AppLink[] = [
     url: "https://registro-ambulantes-app.streamlit.app/",
     tags: ["registro", "control", "Desarrollo Económico"],
     owner: "Desarrollo Económico",
-    image: "/apps/ambulantes.jpg",
+    image: "/ambulantes.jpg",
     accent: "#7c0e0e",
   },
   {
@@ -59,7 +59,20 @@ export const APPS: AppLink[] = [
     url: "https://reportesgde.streamlit.app/",
     tags: ["dashboards", "indicadores", "GLDE"],
     owner: "GLDE",
-    image: "/apps/reportes.png",
+    image: "/reportes.png",
     accent: "#7c0e0e",
   },
+  {
+  id: "qrs",
+  name: "Generador de QRS - Pachacard",
+  slug: "generador-qrs",
+  category: "Otros",
+  description: "Script para la generación de QRS.",
+  url: "https://tu-url-qrs.streamlit.app/", // pon tu URL real
+  tags: ["codigo", "qrs", "Pachacard"],
+  owner: "TD",
+  image: "/qrs.jpg",
+  accent: "#7c0e0e",
+},
+
 ]
