@@ -59,7 +59,7 @@ export const APPS: AppLink[] = [
     url: "https://reportesgde.streamlit.app/",
     tags: ["dashboards", "indicadores"],
     owner: "GLDE",
-    image: "/reportes.png",
+    image: "/reportes.jpg",
     accent: "#7c0e0e",
   },
   {
