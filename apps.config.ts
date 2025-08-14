@@ -20,7 +20,7 @@ export const APPS: AppLink[] = [
     url: "https://informe-conformidad.streamlit.app/",
     icon: "🧾",
     tags: ["documentos", "automatización"],
-    owner: "GDE",
+    owner: "GLDE",
   },
   {
     id: "ferias",
@@ -42,7 +42,7 @@ export const APPS: AppLink[] = [
     url: "https://registro-ambulantes-app.streamlit.app/",
     icon: "🧍‍♂️",
     tags: ["registro", "control"],
-    owner: "Fiscalización",
+    owner: "Desarrollo Económico",
   },
   {
     id: "reportes",
@@ -53,6 +53,17 @@ export const APPS: AppLink[] = [
     url: "https://reportesgde.streamlit.app/",
     icon: "📊",
     tags: ["dashboards", "indicadores"],
-    owner: "GDE",
+    owner: "GLDE",
+  },
+    {
+    id: "otros",
+    name: "Generador de QRS - Pachacard",
+    slug: "QRS",
+    category: "Otros",
+    description: "Script para la generación de QRS",
+    url: "https://registro-ambulantes-app.streamlit.app/",
+    icon: "🧍‍♂️",
+    tags: ["codigo", "qrs"],
+    owner: "Pachacard",
   },
 ];
