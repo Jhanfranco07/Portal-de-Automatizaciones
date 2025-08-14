@@ -3,7 +3,7 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import type { AppLink } from "@/apps.config"
 
-const CATEGORIES: AppLink["category"][] = ["Conformidad","Ferias","Ambulantes","Reportes","Otros"]
+const CATEGORIES: AppLink["category"][] = ["Informes","Ferias","Ambulantes","Reportes","Otros"]
 
 type Props = { value?: string; onChange: (c?: string) => void }
 
