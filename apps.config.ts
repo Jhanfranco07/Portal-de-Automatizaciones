@@ -3,7 +3,7 @@ export type AppLink = {
   id: string
   name: string
   slug: string
-  category: "Conformidad" | "Ferias" | "Ambulantes" | "Reportes" | "Otros"
+  category: "Conformidad" | "Ferias" | "Reportes" | "Otros"
   description: string
   url: string
   icon?: string
@@ -42,7 +42,7 @@ export const APPS: AppLink[] = [
     id: "ambulantes",
     name: "Registro de Ambulantes",
     slug: "registro-ambulantes",
-    category: "Ambulantes",
+    category: "Ferias",
     description: "Registro y control de comerciantes ambulantes.",
     url: "https://registro-ambulantes-app.streamlit.app/",
     tags: ["registro", "control"],
