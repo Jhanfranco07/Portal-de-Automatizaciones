@@ -71,7 +71,7 @@ export const APPS: AppLink[] = [
   url: "https://tu-url-qrs.streamlit.app/", // pon tu URL real
   tags: ["codigo", "qrs", "Pachacard"],
   owner: "TD",
-  image: "/qrs.jpg",
+  image: "/qrs.png",
   accent: "#7c0e0e",
 },
 
