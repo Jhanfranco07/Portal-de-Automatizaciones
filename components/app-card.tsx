@@ -16,28 +16,33 @@ export function AppCard({ app }: { app: AppLink }) {
       role="region"
       aria-labelledby={`${app.id}-title`}
     >
-      {/* Media header con imagen distintiva */}
-      <div className="relative h-28 w-full overflow-hidden">
+      {/* Media header con proporción fija */}
+      <div className="relative w-full overflow-hidden rounded-t-2xl">
+        {/* Controla la altura por proporción (más bajita) */}
+        <div className="aspect-[16/6] sm:aspect-[16/7] md:aspect-[16/8]" />
         {app.image ? (
           <>
             <Image
               src={app.image}
               alt={app.name}
-              width={400}
-              height={200}
-              className="h-32 w-full object-cover rounded-t-lg"
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              priority={false}
             />
-
-            {/* Overlay sutil con color institucional */}
             <div
               className="absolute inset-0"
-              style={{ background: `linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0.05)), ${accent}10` }}
+              style={{
+                background: `linear-gradient(0deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06)), ${accent}10`,
+              }}
               aria-hidden="true"
             />
           </>
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gray-100 dark:bg-gray-900">
-            <span className="text-3xl" aria-hidden="true">{app.icon || "🧰"}</span>
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+            <span className="text-3xl" aria-hidden="true">
+              {app.icon || "🧰"}
+            </span>
           </div>
         )}
       </div>
