@@ -13,13 +13,14 @@ export function AppCard({ app }: { app: AppLink }) {
   const showOwner = app.owner && !uniqTags.includes(app.owner)
 
   return (
-    <article
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all
-                 hover:-translate-y-0.5 hover:shadow-lg focus-within:-translate-y-0.5 focus-within:shadow-lg
-                 dark:border-gray-800 dark:bg-black/40"
-      role="region"
-      aria-labelledby={`${app.id}-title`}
-    >
+      <article
+        className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 ease-in-out
+                   hover:-translate-y-0.5 hover:shadow-lg focus-within:-translate-y-0.5 focus-within:shadow-lg
+                   dark:border-gray-800 dark:bg-black/40 hover:ring-4 hover:ring-[#7c0e0e]/50"
+        role="region"
+        aria-labelledby={`${app.id}-title`}
+      >
+
       {/* Thumbnail compacto (encogido y centrado) */}
       <div
         className="flex w-full items-center justify-center bg-gray-50 dark:bg-gray-900/40 p-3"
