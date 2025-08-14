@@ -13,10 +13,10 @@ export type AppLink = {
 export const APPS: AppLink[] = [
   {
     id: "conformidad",
-    name: "Informe de Conformidad",
+    name: "Generador de Informes",
     slug: "informe-conformidad",
-    category: "Conformidad",
-    description: "Generación de informes y documentos de conformidad.",
+    category: "Informe",
+    description: "Generación de informes conformidad y requerimiento.",
     url: "https://informe-conformidad.streamlit.app/",
     icon: "🧾",
     tags: ["documentos", "automatización"],
