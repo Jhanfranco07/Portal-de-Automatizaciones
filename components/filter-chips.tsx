@@ -1,15 +1,18 @@
 "use client"
 import * as React from "react"
+import { APPS, type AppLink } from "@/apps.config"
 import { Button } from "@/components/ui/button"
-import type { AppLink } from "@/apps.config"
 
-const CATEGORIES: AppLink["category"][] = ["Informes","Ferias","Ambulantes","Reportes","Otros"]
+
+const CATEGORIES: AppLink["category"][] = Array.from(
+  new Set(APPS.map((a) => a.category))
+).sort()
 
 type Props = { value?: string; onChange: (c?: string) => void }
 
 export function FilterChips({ value, onChange }: Props) {
   return (
-    <div role="group" aria-label="Filtrar por categoría" className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2">
       <Button
         variant={value ? "outline" : "default"}
         size="sm"
@@ -18,15 +21,16 @@ export function FilterChips({ value, onChange }: Props) {
       >
         Todas
       </Button>
-      {CATEGORIES.map((c) => (
+
+      {CATEGORIES.map((cat) => (
         <Button
-          key={c}
-          variant={value === c ? "default" : "outline"}
+          key={cat}
+          variant={value === cat ? "default" : "outline"}
           size="sm"
-          onClick={() => onChange(c)}
-          aria-pressed={value === c}
+          onClick={() => onChange(cat)}
+          aria-pressed={value === cat}
         >
-          {c}
+          {cat}
         </Button>
       ))}
     </div>
