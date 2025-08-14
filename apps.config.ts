@@ -2,12 +2,14 @@ export type AppLink = {
   id: string;
   name: string;
   slug: string;
-  category: "Informes" | "Ferias" | "Ambulantes" | "Reportes" | "Otros";
+  category: "Conformidad" | "Ferias" | "Ambulantes" | "Reportes" | "Otros";
   description: string;
   url: string;
   icon?: string;
   tags?: string[];
   owner?: string;
+  image?: string;  
+  accent?: string;  
 };
 
 export const APPS: AppLink[] = [
@@ -15,12 +17,13 @@ export const APPS: AppLink[] = [
     id: "conformidad",
     name: "Generador de Informes",
     slug: "informe-conformidad",
-    category: "Informes",
+    category: "Conformidad",
     description: "Generación de informes conformidad y requerimiento.",
     url: "https://informe-conformidad.streamlit.app/",
-    icon: "🧾",
-    tags: ["documentos", "automatización"],
+    tags: ["documentos", "automatización", "GLDE"],
     owner: "GLDE",
+    image: "/apps/informes.png",    
+    accent: "#7c0e0e"
   },
   {
     id: "ferias",
@@ -29,9 +32,10 @@ export const APPS: AppLink[] = [
     category: "Ferias",
     description: "Verifica puestos, pagos y ubicación correcta de comerciantes.",
     url: "https://appferia.streamlit.app/",
-    icon: "🧑‍🌾",
-    tags: ["verificación", "pagos", "puestos"],
+    tags: ["verificación", "pagos", "puestos", "Desarrollo Económico"],
     owner: "Desarrollo Económico",
+    image: "/apps/ferias.png,
+    accent: "#7c0e0e"
   },
   {
     id: "ambulantes",
@@ -40,9 +44,10 @@ export const APPS: AppLink[] = [
     category: "Ambulantes",
     description: "Registro y control de comerciantes ambulantes.",
     url: "https://registro-ambulantes-app.streamlit.app/",
-    icon: "🧍‍♂️",
-    tags: ["registro", "control"],
+    tags: ["registro", "control", "Desarrollo Económico"],
     owner: "Desarrollo Económico",
+    image: "/apps/ambulantes.jpg",
+    accent: "#7c0e0e"
   },
   {
     id: "reportes",
@@ -51,19 +56,23 @@ export const APPS: AppLink[] = [
     category: "Reportes",
     description: "Visualización de reportes y métricas de gestión.",
     url: "https://reportesgde.streamlit.app/",
-    icon: "📊",
-    tags: ["dashboards", "indicadores"],
+    tags: ["dashboards", "indicadores", "GLDE"],
     owner: "GLDE",
+    image: "/apps/reportes.png",
+    accent: "#7c0e0e"
   },
-    {
-    id: "otros",
+  // (opcional) si usas tu app de QRS:
+  {
+    id: "qrs",
     name: "Generador de QRS - Pachacard",
-    slug: "QRS",
+    slug: "generador-qrs",
     category: "Otros",
-    description: "Script para la generación de QRS",
-    url: "https://registro-ambulantes-app.streamlit.app/",
-    icon: "🧍‍♂️",
-    tags: ["codigo", "qrs"],
-    owner: "Pachacard",
-  },
+    description: "Script para la generación de QRS.",
+    url: "https://TU-URL.streamlit.app/",
+    tags: ["codigo", "qrs", "Pachacard"],
+    owner: "TD",
+    image: "/apps/qrs.png",
+    accent: "#7c0e0e"
+  }
 ];
+
