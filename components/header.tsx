@@ -40,7 +40,7 @@ export function Header() {
             </span>
             {/* Subtítulo suave para no competir con el H1 de la landing */}
             <span className="block text-xs text-white/80">
-              Portal de Automatizaciones
+              Gerencia de Licencias y Desarrollo Económico
             </span>
           </div>
         </Link>
