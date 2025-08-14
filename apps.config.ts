@@ -2,7 +2,7 @@ export type AppLink = {
   id: string;
   name: string;
   slug: string;
-  category: "Conformidad" | "Ferias" | "Ambulantes" | "Reportes" | "Otros";
+  category: "Informes" | "Ferias" | "Ambulantes" | "Reportes" | "Otros";
   description: string;
   url: string;
   icon?: string;
@@ -15,7 +15,7 @@ export const APPS: AppLink[] = [
     id: "conformidad",
     name: "Generador de Informes",
     slug: "informe-conformidad",
-    category: "Informe",
+    category: "Informes",
     description: "Generación de informes conformidad y requerimiento.",
     url: "https://informe-conformidad.streamlit.app/",
     icon: "🧾",
