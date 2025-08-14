@@ -70,7 +70,7 @@ export const APPS: AppLink[] = [
   description: "Script para la generación de QRS.",
   url: "https://tu-url-qrs.streamlit.app/", // pon tu URL real
   tags: ["codigo", "qrs", "Pachacard"],
-  owner: "TD",
+  owner: "script",
   image: "/qrs.png",
   accent: "#7c0e0e",
 },
