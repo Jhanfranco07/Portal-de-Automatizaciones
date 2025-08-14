@@ -20,26 +20,22 @@ export function AppCard({ app }: { app: AppLink }) {
       role="region"
       aria-labelledby={`${app.id}-title`}
     >
-      {/* Header de imagen: altura fija compacta */}
-      <div className="relative w-full overflow-hidden rounded-t-2xl h-20 sm:h-24 md:h-28">
+      {/* Thumbnail compacto (encogido y centrado) */}
+      <div
+        className="flex w-full items-center justify-center bg-gray-50 dark:bg-gray-900/40 p-3"
+        style={{ borderTopLeftRadius: 16, borderTopRightRadius: 16, borderBottom: `1px solid rgba(0,0,0,0.06)` }}
+      >
         {app.image ? (
-          <>
-            <Image
-              src={app.image}
-              alt={app.name}
-              fill
-              sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-              priority={false}
-            />
-            <div
-              className="absolute inset-0"
-              style={{ background: `linear-gradient(0deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04)), ${accent}10` }}
-              aria-hidden="true"
-            />
-          </>
+          <Image
+            src={app.image}
+            alt={app.name}
+            width={160}          // ← controla el ancho de la miniatura
+            height={80}          // ← controla el alto; la imagen NO se recorta
+            className="object-contain rounded-md"
+            priority={false}
+          />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+          <div className="flex h-16 w-16 items-center justify-center rounded-md bg-white/60 dark:bg-black/40">
             <span className="text-3xl" aria-hidden="true">{app.icon || "🧰"}</span>
           </div>
         )}
@@ -51,7 +47,9 @@ export function AppCard({ app }: { app: AppLink }) {
           <h3 id={`${app.id}-title`} className="text-lg font-semibold leading-snug">
             {app.name}
           </h3>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{app.description}</p>
+          <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+            {app.description}
+          </p>
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -60,7 +58,11 @@ export function AppCard({ app }: { app: AppLink }) {
               {t}
             </Badge>
           ))}
-          {showOwner && <Badge className="transition-colors group-hover:border-gray-400">{app.owner}</Badge>}
+          {showOwner && (
+            <Badge className="transition-colors group-hover:border-gray-400">
+              {app.owner}
+            </Badge>
+          )}
         </div>
 
         <div className="mt-4 flex gap-2">
