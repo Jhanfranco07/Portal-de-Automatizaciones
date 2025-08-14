@@ -8,6 +8,10 @@ import type { AppLink } from "@/apps.config"
 export function AppCard({ app }: { app: AppLink }) {
   const accent = app.accent || "#7c0e0e"
 
+  // tags únicas (máx 4) y sin duplicar owner
+  const uniqTags = Array.from(new Set(app.tags ?? [])).slice(0, 4)
+  const showOwner = app.owner && !uniqTags.includes(app.owner)
+
   return (
     <article
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all
@@ -16,33 +20,27 @@ export function AppCard({ app }: { app: AppLink }) {
       role="region"
       aria-labelledby={`${app.id}-title`}
     >
-      {/* Media header con proporción fija */}
-      <div className="relative w-full overflow-hidden rounded-t-2xl">
-        {/* Controla la altura por proporción (más bajita) */}
-        <div className="aspect-[16/6] sm:aspect-[16/7] md:aspect-[16/8]" />
+      {/* Header de imagen: altura fija compacta */}
+      <div className="relative w-full overflow-hidden rounded-t-2xl h-20 sm:h-24 md:h-28">
         {app.image ? (
           <>
             <Image
               src={app.image}
               alt={app.name}
               fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               priority={false}
             />
             <div
               className="absolute inset-0"
-              style={{
-                background: `linear-gradient(0deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06)), ${accent}10`,
-              }}
+              style={{ background: `linear-gradient(0deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04)), ${accent}10` }}
               aria-hidden="true"
             />
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-            <span className="text-3xl" aria-hidden="true">
-              {app.icon || "🧰"}
-            </span>
+            <span className="text-3xl" aria-hidden="true">{app.icon || "🧰"}</span>
           </div>
         )}
       </div>
@@ -57,12 +55,12 @@ export function AppCard({ app }: { app: AppLink }) {
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          {app.tags?.slice(0, 3).map((t) => (
+          {uniqTags.map((t) => (
             <Badge key={t} className="transition-colors group-hover:border-gray-400">
               {t}
             </Badge>
           ))}
-          {app.owner && <Badge className="transition-colors group-hover:border-gray-400">{app.owner}</Badge>}
+          {showOwner && <Badge className="transition-colors group-hover:border-gray-400">{app.owner}</Badge>}
         </div>
 
         <div className="mt-4 flex gap-2">
