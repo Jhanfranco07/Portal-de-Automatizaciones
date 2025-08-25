@@ -63,6 +63,18 @@ export const APPS: AppLink[] = [
     accent: "#7c0e0e",
   },
   {
+    id: "reportes",
+    name: "Mapa de Comercio Ambulatorio 2025",
+    slug: "reportes-gde",
+    category: "Reportes",
+    description: "Visualización de comerciantes en el distrito.",
+    url: "https://map-comercio.vercel.app/",
+    tags: ["Mapa", "indicadores", "Ambulantes"],
+    owner: "GLDE",
+    image: "/reportes.jpg",
+    accent: "#7c0e0e",
+  },
+  {
   id: "qrs",
   name: "Generador de QRS - Pachacard",
   slug: "generador-qrs",
