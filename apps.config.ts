@@ -66,7 +66,7 @@ export const APPS: AppLink[] = [
     id: "reportes",
     name: "Mapa de Comercio Ambulatorio 2025",
     slug: "reportes-gde",
-    category: "Reportes",
+    category: "Ferias",
     description: "Visualización de comerciantes en el distrito.",
     url: "https://map-comercio.vercel.app/",
     tags: ["Mapa", "indicadores", "Ambulantes"],
