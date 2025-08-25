@@ -63,7 +63,7 @@ export const APPS: AppLink[] = [
     accent: "#7c0e0e",
   },
   {
-    id: "reportes",
+    id: "comercio",
     name: "Mapa de Comercio Ambulatorio 2025",
     slug: "reportes-gde",
     category: "Ferias",
