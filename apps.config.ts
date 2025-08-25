@@ -64,7 +64,7 @@ export const APPS: AppLink[] = [
   },
   {
     id: "comercio",
-    name: "Mapa de Comercio Ambulatorio 2025",
+    name: "Mapa del Comercio Ambulatorio 2025",
     slug: "reportes-gde",
     category: "Ferias",
     description: "Visualización de comerciantes en el distrito.",
