@@ -71,7 +71,7 @@ export const APPS: AppLink[] = [
     url: "https://map-comercio.vercel.app/",
     tags: ["Mapa", "indicadores", "Ambulantes"],
     owner: "GLDE",
-    image: "/ambulantes.jpg",
+    image: "/comercio.jpg",
     accent: "#7c0e0e",
   },
   {
